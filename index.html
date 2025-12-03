@@ -1,0 +1,1301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>NovaCard – Smart Credit for Modern Life</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <style>
+    :root {
+      --bg-dark: #050816;
+      --bg-card: #0f172a;
+      --accent: #6366f1;
+      --accent-soft: rgba(99, 102, 241, 0.1);
+      --text-main: #f9fafb;
+      --text-muted: #9ca3af;
+      --danger: #f97373;
+      --success: #22c55e;
+      --border-soft: rgba(148, 163, 184, 0.35);
+      --shadow-soft: 0 24px 60px rgba(15, 23, 42, 0.9);
+      --radius-xl: 24px;
+      --transition-fast: 180ms ease-out;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
+        "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #111827 0, #020617 50%, #000 100%);
+      color: var(--text-main);
+      min-height: 100vh;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .page {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 20px 16px 40px;
+    }
+
+    /* Navbar */
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 16px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      background: linear-gradient(135deg, rgba(15, 23, 42, 0.9), rgba(15, 23, 42, 0.7));
+      backdrop-filter: blur(18px);
+      position: sticky;
+      top: 12px;
+      z-index: 10;
+    }
+
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo-badge {
+      width: 32px;
+      height: 32px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 30% 0, #e5e7eb, #4f46e5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 16px;
+      color: #111827;
+      box-shadow: 0 8px 24px rgba(79, 70, 229, 0.5);
+    }
+
+    .nav-title {
+      font-weight: 600;
+      font-size: 18px;
+      letter-spacing: 0.02em;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      font-size: 14px;
+      color: var(--text-muted);
+    }
+
+    .nav-link {
+      position: relative;
+      cursor: pointer;
+    }
+
+    .nav-link span {
+      position: relative;
+      z-index: 1;
+    }
+
+    .nav-link::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: 999px;
+      background: radial-gradient(circle at 50% 0, rgba(99, 102, 241, 0.25), transparent);
+      opacity: 0;
+      transform: scale(0.8);
+      transition: opacity var(--transition-fast), transform var(--transition-fast);
+    }
+
+    .nav-link:hover {
+      color: #e5e7eb;
+    }
+
+    .nav-link:hover::after {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    .nav-cta {
+      padding: 7px 14px;
+      font-size: 13px;
+      border-radius: 999px;
+      border: 1px solid rgba(129, 140, 248, 0.7);
+      background: radial-gradient(circle at 0 0, rgba(129, 140, 248, 0.35), rgba(15, 23, 42, 0.8));
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: transform var(--transition-fast), box-shadow var(--transition-fast),
+        background var(--transition-fast);
+    }
+
+    .nav-cta-icon {
+      font-size: 14px;
+    }
+
+    .nav-cta:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 12px 32px rgba(79, 70, 229, 0.6);
+      background: radial-gradient(circle at 0 0, rgba(129, 140, 248, 0.5), rgba(15, 23, 42, 0.9));
+    }
+
+    /* Layout */
+    .hero {
+      margin-top: 32px;
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+      gap: 32px;
+      align-items: stretch;
+    }
+
+    @media (max-width: 860px) {
+      .hero {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .nav {
+        padding-inline: 12px;
+        gap: 10px;
+      }
+
+      .nav-links {
+        display: none;
+      }
+    }
+
+    /* Left column: text */
+    .hero-copy-card {
+      padding: 22px 22px 20px;
+      border-radius: var(--radius-xl);
+      border: 1px solid var(--border-soft);
+      background: radial-gradient(circle at 0 0, rgba(59, 130, 246, 0.18), transparent 45%),
+        radial-gradient(circle at 100% 0, rgba(129, 140, 248, 0.18), transparent 50%),
+        linear-gradient(145deg, #020617, #020617);
+      box-shadow: var(--shadow-soft);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      font-size: 11px;
+      color: var(--text-muted);
+      background: linear-gradient(135deg, rgba(15, 23, 42, 0.9), rgba(15, 23, 42, 0.8));
+      margin-bottom: 10px;
+    }
+
+    .hero-pill-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 30% 0, #bbf7d0, #22c55e);
+      box-shadow: 0 0 12px rgba(34, 197, 94, 0.9);
+    }
+
+    .hero-heading {
+      font-size: clamp(2.1rem, 3vw, 2.6rem);
+      letter-spacing: -0.03em;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .hero-heading strong {
+      background: linear-gradient(120deg, #e5e7eb, #a5b4fc, #38bdf8);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      white-space: nowrap;
+    }
+
+    .hero-sub {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      max-width: 30rem;
+      margin-bottom: 18px;
+    }
+
+    .hero-highlight-row {
+      display: flex;
+      gap: 18px;
+      flex-wrap: wrap;
+      margin-bottom: 18px;
+      font-size: 0.85rem;
+      color: #e5e7eb;
+    }
+
+    .hero-highlight {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .hero-highlight-badge {
+      padding: 2px 8px;
+      border-radius: 999px;
+      background: rgba(34, 197, 94, 0.12);
+      color: #bbf7d0;
+      font-size: 0.75rem;
+      border: 1px solid rgba(74, 222, 128, 0.3);
+    }
+
+    .hero-highlight span {
+      color: var(--text-muted);
+    }
+
+    .hero-cta-row {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 18px;
+    }
+
+    .btn {
+      border-radius: 999px;
+      padding: 9px 16px;
+      font-size: 0.9rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+      border: 1px solid transparent;
+      transition: transform var(--transition-fast), box-shadow var(--transition-fast),
+        background var(--transition-fast), border-color var(--transition-fast),
+        opacity var(--transition-fast);
+      white-space: nowrap;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #4f46e5, #0ea5e9);
+      border-color: rgba(129, 140, 248, 0.9);
+      box-shadow: 0 18px 40px rgba(56, 189, 248, 0.65);
+      color: #eff6ff;
+      font-weight: 600;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px) scale(1.01);
+      box-shadow: 0 24px 60px rgba(56, 189, 248, 0.9);
+    }
+
+    .btn-secondary {
+      background: rgba(15, 23, 42, 0.7);
+      border-color: rgba(148, 163, 184, 0.6);
+      color: var(--text-muted);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(15, 23, 42, 0.95);
+      border-color: rgba(209, 213, 219, 0.8);
+      color: #e5e7eb;
+    }
+
+    .hero-footnote {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    .hero-footnote strong {
+      color: #e5e7eb;
+    }
+
+    /* Right column: card + form */
+    .hero-right {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .card-visual {
+      position: relative;
+      border-radius: var(--radius-xl);
+      padding: 16px 16px 14px;
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      background: radial-gradient(circle at 0 0, rgba(56, 189, 248, 0.3), transparent 55%),
+        radial-gradient(circle at 100% 0, rgba(99, 102, 241, 0.4), transparent 55%),
+        linear-gradient(145deg, #020617, #020617);
+      overflow: hidden;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .floating-tag {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      padding: 4px 9px;
+      border-radius: 999px;
+      font-size: 10px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      background: rgba(15, 23, 42, 0.85);
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      color: #cbd5f5;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .floating-tag-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 30% 0, #bfdbfe, #4f46e5);
+      box-shadow: 0 0 12px rgba(129, 140, 248, 0.9);
+    }
+
+    .card-inner {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.1fr);
+      gap: 14px;
+      align-items: center;
+    }
+
+    @media (max-width: 480px) {
+      .card-inner {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    /* The credit card */
+    .card-ui {
+      border-radius: 22px;
+      padding: 14px 14px 13px;
+      background: radial-gradient(circle at 0 0, rgba(248, 250, 252, 0.12), transparent 55%),
+        radial-gradient(circle at 100% 100%, rgba(37, 99, 235, 0.85), rgba(30, 64, 175, 0.9));
+      border: 1px solid rgba(191, 219, 254, 0.8);
+      box-shadow: 0 20px 40px rgba(15, 23, 42, 0.85);
+      color: #e5f0ff;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card-ui::before {
+      content: "";
+      position: absolute;
+      width: 220%;
+      height: 220%;
+      background: conic-gradient(
+        from 0deg,
+        rgba(248, 250, 252, 0.1),
+        rgba(129, 140, 248, 0.25),
+        rgba(56, 189, 248, 0.25),
+        rgba(248, 250, 252, 0.1)
+      );
+      top: -60%;
+      left: -60%;
+      opacity: 0.5;
+      filter: blur(9px);
+    }
+
+    .card-ui-main {
+      position: relative;
+      z-index: 1;
+    }
+
+    .card-row-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 18px;
+    }
+
+    .card-chip {
+      width: 32px;
+      height: 24px;
+      border-radius: 8px;
+      background: linear-gradient(135deg, #e5e7eb, #9ca3af);
+      box-shadow: 0 0 0 1px rgba(15, 23, 42, 0.35);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card-chip::before,
+    .card-chip::after {
+      content: "";
+      position: absolute;
+      inset: 4px;
+      border-radius: 6px;
+      border: 1px solid rgba(55, 65, 81, 0.6);
+    }
+
+    .card-brand {
+      font-size: 12px;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      color: #dbeafe;
+      font-weight: 600;
+    }
+
+    .card-number {
+      font-family: "SF Mono", ui-monospace, Menlo, Monaco, Consolas, "Liberation Mono",
+        "Courier New", monospace;
+      font-size: 0.98rem;
+      letter-spacing: 0.23em;
+      margin-bottom: 12px;
+    }
+
+    .card-number span {
+      opacity: 0.9;
+    }
+
+    .card-number span.muted {
+      opacity: 0.35;
+    }
+
+    .card-row-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      font-size: 0.68rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    .card-label {
+      color: rgba(191, 219, 254, 0.7);
+      margin-bottom: 2px;
+    }
+
+    .card-value {
+      font-size: 0.78rem;
+      letter-spacing: 0.11em;
+    }
+
+    .card-logo {
+      font-weight: 700;
+      font-size: 1.1rem;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      line-height: 1.1;
+    }
+
+    .card-logo span:nth-child(2) {
+      font-size: 0.55rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(191, 219, 254, 0.9);
+    }
+
+    .card-orbit {
+      position: absolute;
+      width: 130px;
+      height: 130px;
+      border-radius: 999px;
+      border: 1px dashed rgba(191, 219, 254, 0.35);
+      bottom: -70px;
+      right: -40px;
+      opacity: 0.9;
+      backdrop-filter: blur(2px);
+    }
+
+    .card-orbit-dot {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 30% 0, #f9fafb, #38bdf8);
+      top: 16px;
+      right: 18px;
+      box-shadow: 0 0 14px rgba(56, 189, 248, 0.9);
+    }
+
+    /* Quick stats */
+    .card-stats {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .stat {
+      padding: 8px 10px;
+      border-radius: 16px;
+      border: 1px solid rgba(148, 163, 184, 0.45);
+      background: rgba(15, 23, 42, 0.85);
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .stat-label {
+      font-size: 0.68rem;
+      color: var(--text-muted);
+    }
+
+    .stat-value {
+      font-size: 0.86rem;
+      color: #e5e7eb;
+      font-weight: 500;
+    }
+
+    .stat-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 0.7rem;
+    }
+
+    .stat-pill span {
+      font-size: 0.68rem;
+    }
+
+    .stat-pill-positive {
+      color: #bbf7d0;
+    }
+
+    .stat-pill-neutral {
+      color: #e5e7eb;
+    }
+
+    /* Form */
+    .apply-card {
+      border-radius: var(--radius-xl);
+      padding: 16px 16px 14px;
+      border: 1px solid var(--border-soft);
+      background: linear-gradient(
+        145deg,
+        rgba(15, 23, 42, 0.95),
+        rgba(15, 23, 42, 0.92)
+      );
+      box-shadow: var(--shadow-soft);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .apply-card::before {
+      content: "";
+      position: absolute;
+      inset: -100px;
+      background: radial-gradient(
+        circle at 0 0,
+        rgba(79, 70, 229, 0.27),
+        transparent 55%
+      );
+      opacity: 0.7;
+    }
+
+    .apply-inner {
+      position: relative;
+      z-index: 1;
+    }
+
+    .apply-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+      gap: 10px;
+    }
+
+    .apply-title {
+      font-size: 0.95rem;
+      font-weight: 600;
+    }
+
+    .apply-caption {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    .apply-badge {
+      padding: 3px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(34, 197, 94, 0.5);
+      font-size: 0.7rem;
+      color: #bbf7d0;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      white-space: nowrap;
+    }
+
+    .apply-badge-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 30% 0, #bbf7d0, #22c55e);
+      box-shadow: 0 0 12px rgba(16, 185, 129, 0.9);
+    }
+
+    .form {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.1fr);
+      gap: 10px 10px;
+      margin-bottom: 10px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .form-group.full {
+      grid-column: 1 / -1;
+    }
+
+    label {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    input,
+    select {
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      background: rgba(15, 23, 42, 0.85);
+      padding: 7px 11px;
+      font-size: 0.8rem;
+      color: var(--text-main);
+      outline: none;
+      transition: border-color var(--transition-fast),
+        box-shadow var(--transition-fast), background var(--transition-fast),
+        transform var(--transition-fast);
+    }
+
+    input::placeholder {
+      color: rgba(148, 163, 184, 0.7);
+    }
+
+    input:focus,
+    select:focus {
+      border-color: rgba(129, 140, 248, 0.95);
+      box-shadow: 0 0 0 1px rgba(129, 140, 248, 0.5);
+      background: rgba(15, 23, 42, 0.98);
+      transform: translateY(-0.5px);
+    }
+
+    .form-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .apply-meta {
+      font-size: 0.7rem;
+      color: var(--text-muted);
+    }
+
+    .apply-meta strong {
+      color: #e5e7eb;
+    }
+
+    .badge-soft {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 3px 8px;
+      border-radius: 999px;
+      border: 1px dashed rgba(148, 163, 184, 0.7);
+      font-size: 0.7rem;
+    }
+
+    .badge-soft span {
+      font-size: 0.75rem;
+    }
+
+    .error {
+      margin-top: 4px;
+      font-size: 0.7rem;
+      color: var(--danger);
+      display: none;
+    }
+
+    .error.visible {
+      display: block;
+    }
+
+    .success-banner {
+      margin-top: 8px;
+      padding: 6px 9px;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      color: #bbf7d0;
+      background: rgba(22, 163, 74, 0.12);
+      border: 1px solid rgba(34, 197, 94, 0.6);
+      display: none;
+    }
+
+    .success-banner.visible {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* Bottom section */
+    .bottom-section {
+      margin-top: 26px;
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+      gap: 20px;
+      align-items: flex-start;
+      font-size: 0.86rem;
+      color: var(--text-muted);
+    }
+
+    @media (max-width: 860px) {
+      .bottom-section {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    .bottom-block {
+      border-radius: 20px;
+      padding: 14px 16px;
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      background: radial-gradient(circle at 0 0, rgba(15, 23, 42, 0.95), rgba(15, 23, 42, 0.92));
+    }
+
+    .bottom-title {
+      font-size: 0.86rem;
+      color: #e5e7eb;
+      margin-bottom: 5px;
+      font-weight: 500;
+    }
+
+    .divider {
+      height: 1px;
+      background: linear-gradient(
+        to right,
+        rgba(148, 163, 184, 0.2),
+        rgba(148, 163, 184, 0.05),
+        transparent
+      );
+      margin: 6px 0 10px;
+    }
+
+    .benefit-list {
+      list-style: none;
+      display: grid;
+      gap: 6px;
+    }
+
+    .benefit-item {
+      display: flex;
+      gap: 8px;
+      align-items: flex-start;
+    }
+
+    .benefit-dot {
+      margin-top: 5px;
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 30% 0, #bae6fd, #0ea5e9);
+    }
+
+    .limit-pill {
+      display: inline-flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .mini-pill {
+      padding: 2px 7px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.7);
+      font-size: 0.7rem;
+      color: #e5e7eb;
+    }
+
+    .mini-pill-strong {
+      border-color: rgba(129, 140, 248, 0.9);
+      background: rgba(79, 70, 229, 0.15);
+    }
+
+    footer {
+      margin-top: 22px;
+      font-size: 0.7rem;
+      color: #6b7280;
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      flex-wrap: wrap;
+      padding-top: 10px;
+      border-top: 1px solid rgba(31, 41, 55, 0.8);
+    }
+
+    footer a {
+      text-decoration: underline;
+      text-decoration-style: dotted;
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <!-- NAVBAR -->
+    <header class="nav">
+      <div class="nav-left">
+        <div class="logo-badge">N</div>
+        <div>
+          <div class="nav-title">NovaCard</div>
+        </div>
+      </div>
+      <div class="nav-links">
+        <div class="nav-link"><span>Cards</span></div>
+        <div class="nav-link"><span>Rewards</span></div>
+        <div class="nav-link"><span>Fees</span></div>
+        <button class="nav-cta" id="navApplyBtn">
+          <span class="nav-cta-icon">⚡</span>
+          <span>Apply in 2 minutes</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <main class="hero">
+      <!-- LEFT COLUMN -->
+      <section class="hero-copy-card">
+        <div class="hero-pill">
+          <div class="hero-pill-dot"></div>
+          Instant decision • No annual fee
+        </div>
+        <h1 class="hero-heading">
+          The credit card that <strong>pays you back</strong> for
+          every moment.
+        </h1>
+        <p class="hero-sub">
+          Earn up to 4% cashback on everything you actually spend on –
+          food, travel, and subscriptions – with real-time insights and
+          complete control in one elegant app.
+        </p>
+
+        <div class="hero-highlight-row">
+          <div class="hero-highlight">
+            <span class="hero-highlight-badge">4% cashback</span>
+            <span>on dining &amp; travel</span>
+          </div>
+          <div class="hero-highlight">
+            <span class="hero-highlight-badge">0% FX fee</span>
+            <span>on international spends</span>
+          </div>
+        </div>
+
+        <div class="hero-cta-row">
+          <button class="btn btn-primary" id="primaryApplyBtn">
+            Get NovaCard now
+            <span>→</span>
+          </button>
+          <button class="btn btn-secondary" id="learnMoreBtn">
+            View detailed benefits
+          </button>
+        </div>
+
+        <div class="hero-footnote">
+          <span><strong>₹2,00,000+</strong> average approved limit</span>
+          <span>•</span>
+          <span><strong>3.9★</strong> average customer rating</span>
+        </div>
+      </section>
+
+      <!-- RIGHT COLUMN -->
+      <section class="hero-right">
+        <!-- CARD VISUAL -->
+        <div class="card-visual">
+          <div class="floating-tag">
+            <span class="floating-tag-dot"></span>
+            LIVE LIMIT PREVIEW
+          </div>
+          <div class="card-inner">
+            <div class="card-ui">
+              <div class="card-ui-main">
+                <div class="card-row-top">
+                  <div class="card-chip"></div>
+                  <div class="card-brand">NovaCard • Titanium</div>
+                </div>
+                <div class="card-number" id="cardNumberDisplay">
+                  <span class="muted">●●●●</span>&nbsp;<span class="muted">●●●●</span>&nbsp;
+                  <span class="muted">●●●●</span>&nbsp;<span>5123</span>
+                </div>
+                <div class="card-row-bottom">
+                  <div>
+                    <div class="card-label">Cardholder</div>
+                    <div class="card-value" id="cardNameDisplay">YOU</div>
+                  </div>
+                  <div>
+                    <div class="card-label">Valid Thru</div>
+                    <div class="card-value">08 / 29</div>
+                  </div>
+                  <div class="card-logo">
+                    <span>NOVA</span>
+                    <span>CREDIT</span>
+                  </div>
+                </div>
+              </div>
+              <div class="card-orbit">
+                <div class="card-orbit-dot"></div>
+              </div>
+            </div>
+
+            <div class="card-stats">
+              <div class="stat">
+                <span class="stat-label">Estimated Credit Limit</span>
+                <span class="stat-value" id="limitDisplay">₹1,20,000</span>
+                <span class="stat-pill stat-pill-positive">
+                  ▲ pre-approved for most applicants
+                </span>
+              </div>
+              <div class="stat">
+                <span class="stat-label">Intro APR</span>
+                <span class="stat-value">0% for 90 days</span>
+                <span class="stat-pill stat-pill-neutral">
+                  ⏱ Pay later, no interest
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- APPLY FORM -->
+        <aside class="apply-card" id="applySection">
+          <div class="apply-inner">
+            <div class="apply-header">
+              <div>
+                <div class="apply-title">Apply in under 2 minutes</div>
+                <div class="apply-caption">
+                  Check eligibility without impacting your credit score.
+                </div>
+              </div>
+              <div class="apply-badge">
+                <span class="apply-badge-dot"></span>
+                91% instant approvals
+              </div>
+            </div>
+
+            <form class="form" id="applyForm" novalidate>
+              <div class="form-group">
+                <label for="fullName">Full name</label>
+                <input
+                  type="text"
+                  id="fullName"
+                  name="fullName"
+                  placeholder="As per PAN"
+                  required
+                />
+                <div class="error" id="nameError">Please enter your name.</div>
+              </div>
+
+              <div class="form-group">
+                <label for="income">Monthly income</label>
+                <input
+                  type="number"
+                  id="income"
+                  name="income"
+                  placeholder="₹50,000"
+                  min="10000"
+                  required
+                />
+                <div class="error" id="incomeError">
+                  Please enter income above ₹10,000.
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="city">City</label>
+                <input
+                  type="text"
+                  id="city"
+                  name="city"
+                  placeholder="Bengaluru, Mumbai..."
+                  required
+                />
+                <div class="error" id="cityError">Please enter your city.</div>
+              </div>
+
+              <div class="form-group">
+                <label for="employment">Employment</label>
+                <select id="employment" name="employment" required>
+                  <option value="">Select</option>
+                  <option value="salaried">Salaried</option>
+                  <option value="self-employed">Self-employed</option>
+                  <option value="freelancer">Freelancer</option>
+                  <option value="student">Student</option>
+                </select>
+                <div class="error" id="employmentError">
+                  Please select employment type.
+                </div>
+              </div>
+
+              <div class="form-group full">
+                <label for="email">Email</label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  placeholder="you@example.com"
+                  required
+                />
+                <div class="error" id="emailError">
+                  Please enter a valid email address.
+                </div>
+              </div>
+            </form>
+
+            <div class="form-footer">
+              <div>
+                <button class="btn btn-primary" id="submitBtn">
+                  Check my eligibility
+                  <span>→</span>
+                </button>
+                <div class="success-banner" id="successBanner">
+                  ✅ You’re pre-qualified! We’ll reach out shortly.
+                </div>
+              </div>
+
+              <div>
+                <div class="apply-meta">
+                  <strong>Soft check only</strong> • doesn’t affect CIBIL score
+                </div>
+                <div class="badge-soft">
+                  <span>🔒</span>
+                  <span>256-bit encrypted</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </aside>
+      </section>
+    </main>
+
+    <!-- BOTTOM SECTION -->
+    <section class="bottom-section" id="benefitsSection">
+      <div class="bottom-block">
+        <div class="bottom-title">Why NovaCard?</div>
+        <div class="divider"></div>
+        <ul class="benefit-list">
+          <li class="benefit-item">
+            <div class="benefit-dot"></div>
+            <div>
+              Up to <strong>4% cashback</strong> on dining, travel &amp; subscriptions,
+              automatically credited every month.
+            </div>
+          </li>
+          <li class="benefit-item">
+            <div class="benefit-dot"></div>
+            <div>
+              <strong>Zero annual fee</strong> for life – no hidden “joining”
+              or “maintenance” charges.
+            </div>
+          </li>
+          <li class="benefit-item">
+            <div class="benefit-dot"></div>
+            <div>
+              Smart controls in-app: freeze/unfreeze card, set spending limits,
+              and enable safe online-only mode in seconds.
+            </div>
+          </li>
+          <li class="benefit-item">
+            <div class="benefit-dot"></div>
+            <div>
+              Real-time fraud alerts and 24×7 support – talk to a human in
+              under 60 seconds.
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <div class="bottom-block">
+        <div class="bottom-title">Typical approved limits</div>
+        <div class="divider"></div>
+        <p>
+          Based on your monthly income, here’s what many customers get
+          approved for:
+        </p>
+        <div style="margin: 10px 0 8px" class="limit-pill">
+          <span class="mini-pill mini-pill-strong">₹25k – ₹60k income → ₹50k – ₹1L</span>
+          <span class="mini-pill">₹60k – ₹1L income → ₹1L – ₹3L</span>
+          <span class="mini-pill">₹1L+ income → ₹3L – ₹7L</span>
+        </div>
+        <p style="font-size: 0.78rem; margin-top: 4px;">
+          Final limits depend on your credit profile and internal risk checks.
+        </p>
+      </div>
+    </section>
+
+    <footer>
+      <div>© 2025 NovaCard Payments Pvt. Ltd. All rights reserved.</div>
+      <div>
+        <a href="#">Terms</a> • <a href="#">Privacy</a> •
+        <a href="#">Key Fact Statement</a>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    // Smooth scroll helpers
+    function scrollToElement(id) {
+      const el = document.getElementById(id);
+      if (!el) return;
+      el.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+
+    document.getElementById("navApplyBtn").addEventListener("click", function () {
+      scrollToElement("applySection");
+    });
+
+    document.getElementById("primaryApplyBtn").addEventListener("click", function () {
+      scrollToElement("applySection");
+    });
+
+    document.getElementById("learnMoreBtn").addEventListener("click", function () {
+      scrollToElement("benefitsSection");
+    });
+
+    // Form logic
+    const form = document.getElementById("applyForm");
+    const submitBtn = document.getElementById("submitBtn");
+    const successBanner = document.getElementById("successBanner");
+
+    const nameInput = document.getElementById("fullName");
+    const incomeInput = document.getElementById("income");
+    const cityInput = document.getElementById("city");
+    const employmentSelect = document.getElementById("employment");
+    const emailInput = document.getElementById("email");
+
+    const nameError = document.getElementById("nameError");
+    const incomeError = document.getElementById("incomeError");
+    const cityError = document.getElementById("cityError");
+    const employmentError = document.getElementById("employmentError");
+    const emailError = document.getElementById("emailError");
+
+    const cardNameDisplay = document.getElementById("cardNameDisplay");
+    const cardNumberDisplay = document.getElementById("cardNumberDisplay");
+    const limitDisplay = document.getElementById("limitDisplay");
+
+    function formatLimit(amount) {
+      // Simple Indian number formatting for thousands / lakhs
+      let x = amount.toString();
+      if (x.length <= 3) return "₹" + x;
+      let lastThree = x.slice(-3);
+      let other = x.slice(0, -3);
+      if (other !== "") lastThree = "," + lastThree;
+      let res = "";
+      while (other.length > 2) {
+        res = "," + other.slice(-2) + res;
+        other = other.slice(0, -2);
+      }
+      if (other !== "") {
+        res = other + res;
+      }
+      return "₹" + res + lastThree;
+    }
+
+    function estimateLimit(income) {
+      income = Number(income) || 0;
+      if (income <= 0) return 120000;
+      // Rough rule: limit = income * 2.5 with caps
+      let base = income * 2.5;
+      if (base < 50000) base = 50000;
+      if (base > 700000) base = 700000;
+      return Math.round(base / 1000) * 1000;
+    }
+
+    // Update card preview from name and income
+    nameInput.addEventListener("input", function () {
+      const name = nameInput.value.trim();
+      cardNameDisplay.textContent = name ? name.toUpperCase() : "YOU";
+    });
+
+    incomeInput.addEventListener("input", function () {
+      const income = incomeInput.value;
+      const limit = estimateLimit(income);
+      limitDisplay.textContent = formatLimit(limit);
+      // last 4 digits from income
+      const suffix = ("0000" + (Math.floor(income) % 10000)).slice(-4) || "5123";
+      cardNumberDisplay.innerHTML =
+        '<span class="muted">●●●●</span>&nbsp;<span class="muted">●●●●</span>&nbsp;' +
+        '<span class="muted">●●●●</span>&nbsp;<span>' +
+        suffix +
+        "</span>";
+    });
+
+    // Simple email validation
+    function isValidEmail(email) {
+      return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    }
+
+    function clearErrors() {
+      [
+        nameError,
+        incomeError,
+        cityError,
+        employmentError,
+        emailError
+      ].forEach(function (el) {
+        el.classList.remove("visible");
+      });
+    }
+
+    submitBtn.addEventListener("click", function (e) {
+      e.preventDefault();
+      clearErrors();
+      successBanner.classList.remove("visible");
+
+      let hasError = false;
+
+      if (!nameInput.value.trim()) {
+        nameError.classList.add("visible");
+        hasError = true;
+      }
+
+      const income = Number(incomeInput.value);
+      if (!income || income < 10000) {
+        incomeError.classList.add("visible");
+        hasError = true;
+      }
+
+      if (!cityInput.value.trim()) {
+        cityError.classList.add("visible");
+        hasError = true;
+      }
+
+      if (!employmentSelect.value) {
+        employmentError.classList.add("visible");
+        hasError = true;
+      }
+
+      if (!emailInput.value.trim() || !isValidEmail(emailInput.value)) {
+        emailError.classList.add("visible");
+        hasError = true;
+      }
+
+      if (hasError) return;
+
+      // "Submit"
+      successBanner.classList.add("visible");
+
+      // Optional: fake loading state
+      submitBtn.disabled = true;
+      const originalText = submitBtn.textContent;
+      submitBtn.textContent = "Checking...";
+      setTimeout(function () {
+        submitBtn.disabled = false;
+        submitBtn.textContent = originalText;
+      }, 1200);
+    });
+  </script>
+</body>
+</html>
