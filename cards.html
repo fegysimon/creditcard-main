@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>NovaCard – Credit Card Range</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<header>
+  <div class="container header-inner">
+    <div class="logo">Nova<span>Card</span></div>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="cards.html" class="active">Cards</a></li>
+        <li><a href="rewards.html">Rewards</a></li>
+        <li><a href="apply.html">Apply</a></li>
+        <li><a href="support.html">Support</a></li>
+        <li><a href="about.html">About</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main class="container">
+  <section class="section">
+    <h1 class="section-title">Choose the right NovaCard for you</h1>
+    <p class="section-subtitle">
+      Whether you’re new to credit or a frequent traveller, there’s a NovaCard that fits your lifestyle.
+    </p>
+
+    <div class="grid-3">
+      <div class="card">
+        <span class="badge">Entry-level</span>
+        <h3>NovaCard Lite</h3>
+        <p>Ideal for first-time card users looking to build a healthy credit history.</p>
+        <ul class="feature-list">
+          <li>No joining fee</li>
+          <li>1% cashback on all spends</li>
+          <li>Credit limit up to ₹50,000</li>
+          <li>Free SMS & app alerts</li>
+        </ul>
+        <a href="apply.html" class="btn">Apply for Lite</a>
+      </div>
+
+      <div class="card">
+        <span class="badge">Most popular</span>
+        <h3>NovaCard Prime</h3>
+        <p>Our flagship card with accelerated rewards and premium perks.</p>
+        <ul class="feature-list">
+          <li>Up to 3% cashback on dining & fuel</li>
+          <li>5X points on online spends</li>
+          <li>Airport lounge access (2 per year)</li>
+          <li>Annual fee waived on high spends</li>
+        </ul>
+        <a href="apply.html" class="btn">Apply for Prime</a>
+      </div>
+
+      <div class="card">
+        <span class="badge">Frequent travellers</span>
+        <h3>NovaCard Travel+</h3>
+        <p>Made for globetrotters and frequent flyers.</p>
+        <ul class="feature-list">
+          <li>Complimentary lounge access</li>
+          <li>Low forex markup</li>
+          <li>Travel insurance cover</li>
+          <li>Bonus miles on activation</li>
+        </ul>
+        <a href="apply.html" class="btn">Apply for Travel+</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2 class="section-title">At a glance</h2>
+    <table class="compare-table">
+      <tr>
+        <th>Card</th>
+        <th>Annual Fee</th>
+        <th>Best For</th>
+        <th>Reward Type</th>
+      </tr>
+      <tr>
+        <td>NovaCard Lite</td>
+        <td>₹0</td>
+        <td>First-time users</td>
+        <td>Flat cashback</td>
+      </tr>
+      <tr>
+        <td>NovaCard Prime</td>
+        <td>₹999 + GST</td>
+        <td>Everyday & online spends</td>
+        <td>Cashback + reward points</td>
+      </tr>
+      <tr>
+        <td>NovaCard Travel+</td>
+        <td>₹1,999 + GST</td>
+        <td>Travel & international spends</td>
+        <td>Air miles + lounge benefits</td>
+      </tr>
+    </table>
+  </section>
+</main>
+
+<footer>
+  <div class="container footer-inner">
+    <span>© <span id="year"></span> NovaCard Payments Ltd. All rights reserved.</span>
+    <span>Need help choosing? <a href="support.html" style="color:#f97316;">Talk to support</a></span>
+  </div>
+</footer>
+
+<script>
+  document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+</body>
+</html>

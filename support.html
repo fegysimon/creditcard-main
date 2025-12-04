@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>NovaCard Support & FAQ</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<header>
+  <div class="container header-inner">
+    <div class="logo">Nova<span>Card</span></div>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="cards.html">Cards</a></li>
+        <li><a href="rewards.html">Rewards</a></li>
+        <li><a href="apply.html">Apply</a></li>
+        <li><a href="support.html" class="active">Support</a></li>
+        <li><a href="about.html">About</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main class="container">
+  <section class="section">
+    <h1 class="section-title">Support & Help Centre</h1>
+    <p class="section-subtitle">
+      We’re here to help with anything related to your NovaCard – from activation to disputes.
+    </p>
+
+    <div class="grid-3">
+      <div class="card">
+        <h3>Call centre</h3>
+        <p>24×7 support for lost cards, transactions and emergencies.</p>
+        <p><strong>Phone:</strong> 1800-000-1234</p>
+      </div>
+      <div class="card">
+        <h3>Email support</h3>
+        <p>For non-urgent queries and documentation.</p>
+        <p><strong>Email:</strong> support@novacard.com</p>
+      </div>
+      <div class="card">
+        <h3>App support</h3>
+        <p>Chat with us right inside the NovaCard app.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2 class="section-title">Frequently asked questions</h2>
+
+    <div class="faq-item">
+      <h3>How do I activate my NovaCard?</h3>
+      <p>You can activate your card from the NovaCard app or by calling our IVR number mentioned on the welcome kit.</p>
+    </div>
+
+    <div class="faq-item">
+      <h3>What should I do if I lose my card?</h3>
+      <p>Immediately lock your card in the app and call our 24×7 helpline to block the card permanently.</p>
+    </div>
+
+    <div class="faq-item">
+      <h3>How do I dispute a transaction?</h3>
+      <p>You can raise a dispute from the “Transactions” section in the app or by contacting our support team with details.</p>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container footer-inner">
+    <span>© <span id="year"></span> NovaCard Payments Ltd. All rights reserved.</span>
+    <span>Emergency? Call 1800-000-1234</span>
+  </div>
+</footer>
+
+<script>
+  document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+</body>
+</html>

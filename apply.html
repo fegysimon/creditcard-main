@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Apply for NovaCard</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<header>
+  <div class="container header-inner">
+    <div class="logo">Nova<span>Card</span></div>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="cards.html">Cards</a></li>
+        <li><a href="rewards.html">Rewards</a></li>
+        <li><a href="apply.html" class="active">Apply</a></li>
+        <li><a href="support.html">Support</a></li>
+        <li><a href="about.html">About</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main class="container">
+  <section class="section">
+    <h1 class="section-title">Apply for your NovaCard</h1>
+    <p class="section-subtitle">
+      Fill in a few basic details. We’ll run an instant eligibility check and let you know your options.
+    </p>
+
+    <div class="card form-card">
+      <form id="applyForm">
+        <div class="form-group">
+          <label for="cardType">Preferred card</label>
+          <select id="cardType" name="cardType" required>
+            <option value="">Select a card</option>
+            <option value="lite">NovaCard Lite</option>
+            <option value="prime">NovaCard Prime</option>
+            <option value="travel">NovaCard Travel+</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="fullName">Full name</label>
+          <input type="text" id="fullName" name="fullName" required />
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email address</label>
+          <input type="email" id="email" name="email" required />
+        </div>
+
+        <div class="form-group">
+          <label for="phone">Mobile number</label>
+          <input type="text" id="phone" name="phone" required />
+        </div>
+
+        <div class="form-group">
+          <label for="income">Monthly income (₹)</label>
+          <input type="number" id="income" name="income" required />
+        </div>
+
+        <div class="form-group">
+          <label for="city">City</label>
+          <input type="text" id="city" name="city" required />
+        </div>
+
+        <p class="form-note">
+          By submitting this form, you consent to NovaCard contacting you by phone, SMS or email to process your application.
+        </p>
+
+        <button type="submit" class="btn">Submit application</button>
+        <p id="applyStatus" class="form-note" style="margin-top:8px; color:#16a34a; display:none;">
+          Thank you! We’ve received your application. Our team will contact you shortly.
+        </p>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container footer-inner">
+    <span>© <span id="year"></span> NovaCard Payments Ltd. All rights reserved.</span>
+    <span>Secure encrypted application</span>
+  </div>
+</footer>
+
+<script>
+  document.getElementById("year").textContent = new Date().getFullYear();
+
+  const applyForm = document.getElementById("applyForm");
+  const applyStatus = document.getElementById("applyStatus");
+
+  applyForm.addEventListener("submit", function (e) {
+    e.preventDefault();
+    applyStatus.style.display = "block";
+    applyForm.reset();
+    setTimeout(() => { applyStatus.style.display = "none"; }, 5000);
+  });
+</script>
+</body>
+</html>

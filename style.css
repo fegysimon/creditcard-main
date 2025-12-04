@@ -1,0 +1,326 @@
+/* General Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background-color: #fdf6f2;
+  color: #2d2a26;
+  line-height: 1.6;
+}
+
+/* Layout */
+.container {
+  width: 90%;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* Header & Nav */
+header {
+  background: #111827;
+  color: #ffffff;
+  padding: 16px 0;
+  border-bottom: 3px solid #ea580c;
+}
+
+header .header-inner {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 10px;
+  align-items: center;
+}
+
+header .logo {
+  font-size: 1.4rem;
+  font-weight: 700;
+}
+
+header .logo span {
+  color: #f97316;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+nav a {
+  color: #e5e7eb;
+  text-decoration: none;
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-size: 0.9rem;
+  transition: background 0.2s, color 0.2s;
+}
+
+nav a:hover {
+  background: #ea580c;
+  color: #ffffff;
+}
+
+nav a.active {
+  background: #dc2626;
+  color: #ffffff;
+}
+
+/* Main */
+main {
+  padding: 32px 0 48px;
+}
+
+/* Hero */
+.hero {
+  display: grid;
+  gap: 24px;
+}
+
+.hero-title {
+  font-size: 2.2rem;
+  margin-bottom: 8px;
+}
+
+.hero-subtitle {
+  color: #6b6b6b;
+  margin-bottom: 16px;
+}
+
+.hero-highlight {
+  display: inline-block;
+  background: #ffedd5;
+  color: #c2410c;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+
+.hero-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 16px;
+}
+
+/* Cards */
+.card {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 16px 18px;
+  box-shadow: 0 8px 18px rgba(15, 23, 42, 0.06);
+  border: 1px solid #f1c3a6;
+}
+
+.card h2,
+.card h3 {
+  font-size: 1.1rem;
+  margin-bottom: 8px;
+}
+
+.card p {
+  font-size: 0.9rem;
+  color: #4b4b4b;
+}
+
+.badge {
+  display: inline-block;
+  font-size: 0.75rem;
+  padding: 3px 9px;
+  border-radius: 999px;
+  background: #ffece6;
+  color: #dc2626;
+  margin-bottom: 8px;
+}
+
+/* Buttons */
+.btn {
+  display: inline-block;
+  background: #dc2626;
+  color: #ffffff;
+  padding: 8px 14px;
+  border-radius: 999px;
+  font-size: 0.9rem;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.1s;
+}
+
+.btn:hover {
+  background: #b91c1c;
+  transform: translateY(-1px);
+}
+
+.btn-outline {
+  display: inline-block;
+  background: transparent;
+  color: #dc2626;
+  padding: 8px 14px;
+  border-radius: 999px;
+  border: 1px solid #dc2626;
+  font-size: 0.9rem;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+
+.btn-outline:hover {
+  background: #dc2626;
+  color: #ffffff;
+}
+
+/* Sections */
+.section {
+  margin-top: 32px;
+}
+
+.section-title {
+  font-size: 1.5rem;
+  margin-bottom: 8px;
+}
+
+.section-subtitle {
+  color: #6b7280;
+  font-size: 0.95rem;
+  margin-bottom: 20px;
+}
+
+/* Lists */
+ul.feature-list {
+  list-style: none;
+  padding-left: 0;
+  margin-top: 8px;
+}
+
+ul.feature-list li {
+  padding-left: 20px;
+  position: relative;
+  margin-bottom: 6px;
+  font-size: 0.9rem;
+}
+
+ul.feature-list li::before {
+  content: "•";
+  position: absolute;
+  left: 5px;
+  color: #ea580c;
+}
+
+/* Grid Layouts */
+.grid-3 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 16px;
+}
+
+/* Table-like comparison */
+.compare-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 12px;
+  font-size: 0.9rem;
+}
+
+.compare-table th,
+.compare-table td {
+  border: 1px solid #f1c3a6;
+  padding: 8px 10px;
+  text-align: left;
+}
+
+.compare-table th {
+  background: #ffedd5;
+}
+
+/* FAQ */
+.faq-item {
+  margin-bottom: 12px;
+}
+
+.faq-item h3 {
+  font-size: 1rem;
+  margin-bottom: 4px;
+}
+
+.faq-item p {
+  font-size: 0.9rem;
+  color: #4b5563;
+}
+
+/* Form */
+.form-card {
+  max-width: 650px;
+}
+
+form .form-group {
+  margin-bottom: 14px;
+}
+
+form label {
+  display: block;
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+form input[type="text"],
+form input[type="email"],
+form input[type="number"],
+form select,
+form textarea {
+  width: 100%;
+  padding: 8px 10px;
+  border-radius: 10px;
+  border: 1px solid #f1c3a6;
+  font-size: 0.9rem;
+  background: #ffffff;
+}
+
+form textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.form-note {
+  font-size: 0.78rem;
+  color: #6b7280;
+}
+
+/* Status Pills */
+.status-pill {
+  display: inline-block;
+  font-size: 0.75rem;
+  padding: 3px 8px;
+  border-radius: 999px;
+  background: #fef3c7;
+  color: #b45309;
+}
+
+/* Footer */
+footer {
+  background: #111827;
+  color: #9ca3af;
+  padding: 16px 0;
+  font-size: 0.8rem;
+}
+
+footer .footer-inner {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+/* Responsive */
+@media (min-width: 768px) {
+  .hero {
+    grid-template-columns: 2fr 1.4fr;
+    align-items: center;
+  }
+}

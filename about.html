@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>About NovaCard</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<header>
+  <div class="container header-inner">
+    <div class="logo">Nova<span>Card</span></div>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="cards.html">Cards</a></li>
+        <li><a href="rewards.html">Rewards</a></li>
+        <li><a href="apply.html">Apply</a></li>
+        <li><a href="support.html">Support</a></li>
+        <li><a href="about.html" class="active">About</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main class="container">
+  <section class="section">
+    <h1 class="section-title">About NovaCard</h1>
+    <p class="section-subtitle">
+      NovaCard is built on a simple idea: credit should be easy to understand, rewarding to use and safe to manage.
+    </p>
+
+    <p>
+      We combine modern technology with strong banking partnerships to offer credit cards that are simple,
+      transparent and designed around how you actually spend. From instant in-app control to real-time alerts,
+      NovaCard puts you in charge of your money.
+    </p>
+
+    <div class="grid-3" style="margin-top:20px;">
+      <div class="card">
+        <h3>Backed by experience</h3>
+        <p>Founded by industry veterans from banking, payments and consumer tech.</p>
+      </div>
+      <div class="card">
+        <h3>Security first</h3>
+        <p>PCI-DSS compliant infrastructure with encryption and fraud monitoring 24×7.</p>
+      </div>
+      <div class="card">
+        <h3>Customer-centric</h3>
+        <p>Clear communication, fair policies and support that actually listens.</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container footer-inner">
+    <span>© <span id="year"></span> NovaCard Payments Ltd. All rights reserved.</span>
+    <span><a href="apply.html" style="color:#f97316;">Join NovaCard today</a></span>
+  </div>
+</footer>
+
+<script>
+  document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+</body>
+</html>

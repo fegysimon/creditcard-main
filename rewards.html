@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>NovaCard Rewards & Offers</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<header>
+  <div class="container header-inner">
+    <div class="logo">Nova<span>Card</span></div>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="cards.html">Cards</a></li>
+        <li><a href="rewards.html" class="active">Rewards</a></li>
+        <li><a href="apply.html">Apply</a></li>
+        <li><a href="support.html">Support</a></li>
+        <li><a href="about.html">About</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main class="container">
+  <section class="section">
+    <h1 class="section-title">Earn rewards on every swipe</h1>
+    <p class="section-subtitle">
+      From groceries to getaways, your everyday spends earn points, cashback and exclusive offers.
+    </p>
+
+    <div class="grid-3">
+      <div class="card">
+        <h3>Cashback on essentials</h3>
+        <p>Get up to 5% cashback on groceries, fuel and bill payments with eligible cards.</p>
+      </div>
+      <div class="card">
+        <h3>Boosted online rewards</h3>
+        <p>Earn accelerated points on food delivery, shopping apps and subscriptions.</p>
+      </div>
+      <div class="card">
+        <h3>Travel & lifestyle</h3>
+        <p>Redeem rewards for flights, hotel bookings, gift vouchers and more.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2 class="section-title">How rewards work</h2>
+    <ul class="feature-list">
+      <li>Earn points on every eligible transaction using your NovaCard.</li>
+      <li>Check your points balance anytime in the NovaCard app or web portal.</li>
+      <li>Redeem instantly for vouchers, statement credit or travel bookings.</li>
+      <li>Special limited-time offers with partner brands throughout the year.</li>
+    </ul>
+  </section>
+</main>
+
+<footer>
+  <div class="container footer-inner">
+    <span>© <span id="year"></span> NovaCard Payments Ltd. All rights reserved.</span>
+    <span><a href="apply.html" style="color:#f97316;">Start earning now →</a></span>
+  </div>
+</footer>
+
+<script>
+  document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
